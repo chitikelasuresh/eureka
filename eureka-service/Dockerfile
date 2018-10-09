@@ -1,5 +1,5 @@
-FROM java:8  
-COPY . /var/www/java  
-WORKDIR /var/www/java  
-##RUN javac /target/eureka-service-0.0.1-SNAPSHOT.jar
-  
+FROM openjdk:8-jdk-alpine
+VOLUME /tmp
+ARG JAR_FILE
+COPY ${JAR_FILE} eureka-service-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/eureka-service-0.0.1-SNAPSHOT.jar"]
