@@ -1,6 +1,7 @@
-FROM java:8
-VOLUME /tmp
-ADD ./target/eureka-service-0.0.1-SNAPSHOT.jar app.jar
-RUN bash -c 'touch /app.jar'
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+FROM openjdk:10-jre-slim
+COPY ./target/eureka-service-0.0.1-SNAPSHOT.jar /usr/src/hola/
+WORKDIR /usr/src/hola
+EXPOSE 8080
+CMD ["java", "-jar", "eureka-service-0.0.1-SNAPSHOT.jar"]
+
 
